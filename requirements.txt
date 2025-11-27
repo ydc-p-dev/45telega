@@ -7,7 +7,7 @@ cryptg==0.4.0
 hachoir==3.3.0
 
 # MCP Protocol
-mcp==0.1.0
+mcp>=0.1.0
 jsonrpc-websocket==3.1.5
 pydantic==2.5.3
 pydantic-settings==2.1.0
