@@ -41,7 +41,8 @@ COPY --from=builder /root/.local /home/telega/.local
 ENV PATH=/home/telega/.local/bin:$PATH \
     PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
-    TZ=UTC
+    TZ=UTC \
+    PYTHONPATH=/app/src
 
 # Switch to non-root user
 USER telega
@@ -60,6 +61,6 @@ VOLUME ["/data", "/logs"]
 # Expose MCP server port
 EXPOSE 8765
 
-# Entry point
-ENTRYPOINT ["python", "-m", "telega45"]
-CMD ["run", "--host", "0.0.0.0", "--port", "8765"]
+# Entry point: run the Typer CLI defined in mcp_telegram.__init__
+# Default behavior (no args) is to start the MCP server via `run()`
+ENTRYPOINT ["python", "-m", "mcp_telegram"]
